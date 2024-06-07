@@ -14,8 +14,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.example.notesjetpack.R
 import com.example.notesjetpack.ui.viewmodel.NotesViewModel
 
 @Composable
@@ -87,7 +89,7 @@ fun NotesList(
                     .align(Alignment.BottomEnd)
                     .padding(64.dp)
             ) {
-                Text("+")
+                Text(stringResource(R.string.btn_addnote))
             }
         }
     }

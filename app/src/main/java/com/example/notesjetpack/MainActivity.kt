@@ -13,8 +13,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            val viewModel: NotesViewModel = viewModel()
-            Navigation(viewModel = viewModel)
+
+            Navigation()
         }
     }
 }
