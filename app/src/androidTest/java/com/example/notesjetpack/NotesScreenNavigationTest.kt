@@ -39,7 +39,12 @@ class NotesScreenNavigationTest {
 
     @Test
     fun notesNavHost_verifyOnAddNoteClick_navigateToAddNoteScreen(){
-        composeTestRule.onNodeWithStringId(R.string.btn_addnote).performClick()
+        navigateToAddNoteScreen()
         navController.assertCurrentRouteName(Screen.AddNote.route)
+    }
+
+
+    private fun navigateToAddNoteScreen(){
+        composeTestRule.onNodeWithStringId(R.string.btn_addnote).performClick()
     }
 }

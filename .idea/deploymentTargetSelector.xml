@@ -8,6 +8,9 @@
       <SelectionState runConfigName="notesNavHost_verifyStartDestination()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
+      <SelectionState runConfigName="notesNavHost_verifyOnAddNoteClick_navigateToAddNoteScreen()">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
     </selectionStates>
   </component>
 </project>
