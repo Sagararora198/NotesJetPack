@@ -1,4 +1,4 @@
-package com.example.notesjetpack.ui
+package com.example.notesjetpack.ui.screens
 
 import android.widget.Toast
 import androidx.activity.compose.BackHandler
@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import com.example.notesjetpack.ui.viewmodel.NotesViewModel
 
 @Composable
 fun AddNote(

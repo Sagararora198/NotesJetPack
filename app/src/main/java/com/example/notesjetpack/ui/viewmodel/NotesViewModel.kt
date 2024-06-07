@@ -1,4 +1,4 @@
-package com.example.notesjetpack.ui
+package com.example.notesjetpack.ui.viewmodel
 
 
 import androidx.lifecycle.ViewModel
@@ -16,6 +16,9 @@ class NotesViewModel:ViewModel() {
     private var nextId = 1
 
     fun addNote(){
+        if(_uiState.value.title.isBlank()){
+            return
+        }
         val newNote = Note(
             id = nextId++,
             title = _uiState.value.title,
@@ -31,6 +34,9 @@ class NotesViewModel:ViewModel() {
 
     }
     fun updateNote(id:Int,title:String,body:String){
+        if(title.isBlank()){
+            return
+        }
         _uiState.update {currentState->
             val updatedNotes = currentState.notes.map { note->
                 if(note.id==id){

@@ -1,16 +1,16 @@
-package com.example.notesjetpack.ui
+package com.example.notesjetpack.ui.screens
 
 import android.widget.Toast
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.TextFieldValue
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import com.example.notesjetpack.ui.viewmodel.NotesViewModel
 
 @Composable
 fun NoteDetail(
@@ -19,13 +19,19 @@ fun NoteDetail(
     onEditNote: (String, String) -> Unit,
     onDeleteNote: () -> Unit
 ) {
+    var visibility by rememberSaveable {
+        mutableStateOf(false
+        )
+    }
     val uiState by viewModel.uiState.collectAsState()
     val note = uiState.notes.find { it.id == noteId } ?: return
 
-    var title by remember { mutableStateOf(TextFieldValue(note.title)) }
-    var body by remember { mutableStateOf(TextFieldValue(note.body)) }
+    var title by rememberSaveable { mutableStateOf(note.title) }
+    var body by rememberSaveable   { mutableStateOf(note.body) }
 
     val context = LocalContext.current
+    
+
 
     Card(
         modifier = Modifier
@@ -46,26 +52,31 @@ fun NoteDetail(
             )
             TextField(
                 value = title,
-                onValueChange = { title = it },
+                onValueChange = { title = it
+                                visibility = true},
                 label = { Text("Title") },
                 modifier = Modifier.fillMaxWidth()
             )
             TextField(
                 value = body,
-                onValueChange = { body = it },
+                onValueChange = { body = it
+                                visibility = true},
                 label = { Text("Body") },
-                modifier = Modifier.fillMaxWidth().height(200.dp)
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(200.dp)
             )
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Button(
-                    onClick = { if(title.text.isBlank()){
+                    enabled = visibility,
+                    onClick = { if(title.isBlank()){
                         Toast.makeText(context,"Title cannot be empty",Toast.LENGTH_LONG).show()
                         }
                     else{
-                        onEditNote(title.text, body.text)
+                        onEditNote(title, body)
                         }
                         },
                     modifier = Modifier.weight(1f)

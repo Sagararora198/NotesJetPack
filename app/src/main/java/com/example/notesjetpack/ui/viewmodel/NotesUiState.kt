@@ -1,4 +1,4 @@
-package com.example.notesjetpack.ui
+package com.example.notesjetpack.ui.viewmodel
 
 import com.example.notesjetpack.data.Note
 
